@@ -1,0 +1,36 @@
+CREATE TABLE EmployeeDemographics
+(EmployeeID int,
+FirstName varchar (50),
+LastName varchar (50),
+Age int,
+Gender varchar (50)
+)
+
+CREATE TABLE EmployeeSalary
+(EmployeeID int,
+JobTitle varchar (50),
+Salary int)
+
+INSERT INTO EmployeeDemographics VALUES
+(1001, ‘Jim’, ‘Halpert’, 30, ‘Male’),
+(1002, 'Nola', 'Darling', 27, 'Female'),
+(1003, 'Jotaro', 'Kudjo', 28, 'Male'),
+(1004, 'Bender', 'Rodriguez', 50, 'Male'),
+(1005, 'Rick', 'Sanchez', 82, 'Male'),
+(1006, 'Wednesday', 'Addams', 20, 'Female'),
+(1007, 'Daria', 'Morgandorfer', 25, 'Female'),
+(1008, 'Joan', 'Clayton', 29, 'Female'),
+(1009, 'Rohan', 'Kishibe', 23, 'Male')
+
+INSERT INTO EmployeeSalary VALUES
+(1001, 'Salesman', 45000),
+(1002, 'HR', 50000),
+(1003, 'Salesman', 63000),
+(1004, 'Supplier Relations', 41000),
+(1005, 'Regional Manager', 63000),
+(1006, 'Accountant', 47000),
+(1007, 'Accountant', 42000),
+(1008, 'Receptionist', 36000),
+(1009, 'Salesman', 48000)
+
+
