@@ -1,0 +1,26 @@
+Sorting Data in SQL	
+
+This project is using a CSV file for a list of movies. It contains data such as title, date released, director, wiki page descriptions, genre, and budget. I used BigQuery to do some basic sorting functions.
+
+First, I queried the data and sorted it by Release_Date using the ORDER BY function.
+SELECT *
+FROM `movie_data.movies`
+ORDER BY Release_Date
+
+Then I filtered the query in a descending order using the DESC function. 
+SELECT *
+FROM `movie_data.movies`
+ORDER BY Release_Date DESC
+
+Then I added the WHERE clause to filter the query by the comedy genre.
+SELECT *
+FROM `movie_data.movies`
+WHERE Genre = "Comedy"
+ORDER BY Release_Date DESC
+
+Lastly, I filtered the query by revenue using the AND function.
+SELECT *
+FROM `movie_data.movies`
+WHERE Genre = "Comedy"
+AND Revenue > 300000000
+ORDER BY Release_Date DESC
