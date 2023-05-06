@@ -1,0 +1,24 @@
+For this query, I used open data from Citi Bike in BigQuery, which is a public bicycle sharing system in New York.
+Then I used CONCAT to pull and concatenate data from different columns stored in the dataset.
+I needed to create strings of recognizable route names that I could count and sort.
+The information I needed was in the stations and trips table so I started building my query from there. 
+
+SELECT
+usertype,
+CONCAT(start_station_name, " to ", end_station_name) AS route,
+COUNT(*) as num_trips,
+ROUND(AVG(CAST(tripduration AS int64)/60),2) AS duration
+FROM
+`bigquery-public-data.new_york.citibike_trips`
+GROUP BY
+start_station_name, end_station_name, usertype
+ORDER BY
+num_trips DESC
+LIMIT 10
+
+
+I also wanted to get the average trip duration for each route.
+I didn’t need the exact average, so I used the ROUND function to round it up.
+I also needed to use the GROUP BY function to group together the summary rows.
+And finally, I used the ORDER BY function to tell SQL how to organize this data.
+I only wanted the top 10 results so I also added the LIMIT function as well.
