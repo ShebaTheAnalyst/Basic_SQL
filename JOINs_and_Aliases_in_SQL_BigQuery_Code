@@ -1,0 +1,41 @@
+Using JOINs and Aliases in SQL with Google BigQuery
+
+For this data analysis project, I will be working with the International Education public dataset available in BigQuery.
+The dataset includes multiple tables, including the international_education table and the country_summary table.
+Both of these tables contain the column “country_code”, according to the datasets schema.
+
+To combine the data from these tables based on the shared "country_code" column, I will be utilizing the INNER JOIN clause in my query.
+This allows me to merge the relevant information from both tables and gain comprehensive insights for analysis.
+This was my initial query..
+SELECT 
+    `bigquery-public-data.world_bank_intl_education.international_education`.country_name, 
+    `bigquery-public-data.world_bank_intl_education.country_summary`.country_code, 
+    `bigquery-public-data.world_bank_intl_education.international_education`.value
+FROM 
+    `bigquery-public-data.world_bank_intl_education.international_education`
+INNER JOIN 
+    `bigquery-public-data.world_bank_intl_education.country_summary` 
+ON `bigquery-public-data.world_bank_intl_education.country_summary`.country_code = `bigquery-public-data.world_bank_intl_education.international_education`.country_code
+
+Since the previous query was long and a bit too hard to work with I used aliases for each table instead..
+SELECT 
+    edu.country_name,
+    summary.country_code,
+    edu.value
+FROM 
+    `bigquery-public-data.world_bank_intl_education.international_education` AS edu
+INNER JOIN 
+    `bigquery-public-data.world_bank_intl_education.country_summary` AS summary
+ON edu.country_code = summary.country_code
+
+To answer the data question "What is the average amount of money spent per region on education?" I used this query..
+SELECT 
+    AVG(edu.value) average_value, summary.region
+FROM 
+    `bigquery-public-data.world_bank_intl_education.international_education` AS edu
+INNER JOIN 
+    `bigquery-public-data.world_bank_intl_education.country_summary` AS summary
+ON edu.country_code = summary.country_code
+WHERE summary.region IS NOT null
+GROUP BY summary.region
+ORDER BY average_value DESC
