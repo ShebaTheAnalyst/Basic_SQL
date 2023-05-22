@@ -1,0 +1,23 @@
+I started with SELECT and then the names of the columns I wanted to use in my calculations. Then I added the calculation to the query using the names of the three columns with plus signs between them. Then I typed AS followed by the new column name to label the column with the calculated values. Finally, I ended my first query with the FROM command and the name of the table that I was pulling data from.
+SELECT
+Date,
+Region,
+Small_Bags,
+Large_Bags,
+XLarge_Bags,
+Total_Bags,
+Small_Bags + Large_Bags + XLarge_Bags AS Total_Bags_Calc
+FROM `my-project-cert-382621.avocado_data.avocado_prices`
+
+
+In my second query, I set up a new column starting with my calculation. To find the percentage of small bags, I needed to first divide the number of small bags by the number of total bags using a slash as the operator. I put that part of the calculation in parentheses to let the server know that this calculation would need to be performed first. Then I multiplied the total by 100 using an asterisk as our operator. Multiplying by 100 gave me a value that's a percentage instead of a decimal. I used the AS command to name this new column, "Small Bags Percent." Then I added FROM and the name of the set I was pulling from and WHERE with the Total_Bags column followed by a less than sign, a greater than sign, and a zero.
+SELECT
+Date,
+Region,
+Total_Bags,
+Small_Bags,
+(Small_Bags / Total_Bags)*100 AS Small_Bags_Percent
+FROM
+`my-project-cert-382621.avocado_data.avocado_prices`
+WHERE
+Total_Bags <> 0
